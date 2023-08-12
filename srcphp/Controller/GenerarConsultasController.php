@@ -29,8 +29,8 @@ class GenerarConsultasController{
 
           foreach($dataObject->servicios_id as $item){
             $dc =new Detalle_Consultas();
-            $dc-> consulta_id = $Consulta -> id;
-            $dc-> tservicios_id = $item;
+            $dc-> id_consulta = $Consulta -> id;
+            $dc-> id_tservicios = $item;
             $dc -> save();
           }
            

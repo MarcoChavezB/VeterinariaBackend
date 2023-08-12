@@ -11,8 +11,8 @@ class Detalle_Consultas extends Models
     
 
     protected $filleable = [
-        "consulta_id",
-        "tservicios_id",
+        "id_consulta",
+        "id_tservicios",
 
 
     ];

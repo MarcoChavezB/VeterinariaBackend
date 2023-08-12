@@ -63,12 +63,13 @@ class citasController
         }
     }
 
-    function ServiciosClinicos() {
+
+    function CitasPendientesCliente() {
         try {
             $JSONData = file_get_contents("php://input");
             $dataObject = json_decode($JSONData);
 
-            $resultados = Table::query("SELECT * FROM ServiciosClinicos; ");
+            $resultados = Table::query(" CALL CitasPendientesCliente ('{$dataObject->id_cliente}') ");
 
             $r = new Success($resultados);
             return $r->Send();
@@ -78,20 +79,6 @@ class citasController
         }
     }
 
-    function ServiciosEsteticos() {
-        try {
-            $JSONData = file_get_contents("php://input");
-            $dataObject = json_decode($JSONData);
-
-            $resultados = Table::query("SELECT * FROM ServiciosEsteticos; ");
-
-            $r = new Success($resultados);
-            return $r->Send();
-        } catch (\Exception $e) {
-            $r = new Failure(401, $e->getMessage());
-            return $r->Send();
-        }
-    }
 
     function citasAceptadas()
     {

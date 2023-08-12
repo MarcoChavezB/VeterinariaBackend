@@ -20,7 +20,6 @@ use proyecto\Controller\HistorialMedicoController;
 use proyecto\Controller\TiposServiciosController;
 use proyecto\Controller\RegisterController;
 
-
 Router::headers();
 
 ini_set('display_errors', 1);
@@ -33,12 +32,12 @@ Router::get("/pru", function(){
 
 
 Router::post('/auth', [RegisterController::class, 'auth']);
-
-
 Router::post('/signin',[RegisterController::class, 'signin']);
 
 Router::post('/HistorialMedicoIDFecha',[HistorialMedicoController::class, 'HistorialMedicoIDFecha']);
 Router::post('/HistorialIDMascota',[HistorialMedicoController::class, 'HistorialIDMascota']);
+
+Router::post('/ReporteConsultas', [ReportesController::class, 'ReporteConsultas']);
 
 Router::post('/historialMedico', [ReportesController::class, 'historialMedico']);
 Router::post('/historialMedicoCliente',[ReportesController::class, 'historialMedicoCliente']);
