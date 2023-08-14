@@ -62,10 +62,13 @@ Router::post('/TablaProveedor',[ProveedorController::class, 'TablaProveedor']);
 
 Router::post('/registrarMascota', [MascotasController::class, 'registrarMascota']);
 
+// verificacion de correo 
+Router::post('/verificarCorreoR', [RegistroController::class, 'verificarCorreo']);
+
 // Ruta de registro de clientes [Pantalla Registro]
 Router::post('/registro', [RegistroController::class, 'registrar']);
 
-Router::post('/registro', [EmpleadosController::class, 'registrar']);
+// Router::post('/registro', [EmpleadosController::class, 'registrar']);
 
 // Consulta para mostrar todos los registros
 Router::get('/mostrarR', [RegistroController::class, 'mostrarR']);
@@ -88,13 +91,10 @@ Router::get('/bajaProductos', [MostrarProductosController::class, 'mostrarProduc
 Router::post('/precios', [MostrarProductosController::class, 'rangoPrecios']);
 
 // para actualizar un cliente
-Router::post('/clientes/actualizar', [ClientesController::class, 'actualizarCliente']);
+Router::post('/clientes/actualizar', [ClientesController::class, 'actualizarUsuario']);
 
 // Para buscar cliente x correo
 Router::post('/clientes/infoCorreo', [ClientesController::class, 'buscarPorCorreo']);
-
-// obtener el id del cliente
-Router::post('/clientes/info', [ClientesController::class, 'consultarIDcliente']);
 
 // obtener toda info cliente x id
 Router::post('/clientes/infoID', [ClientesController::class, 'obtenerClientePorID']);
@@ -102,14 +102,13 @@ Router::post('/clientes/infoID', [ClientesController::class, 'obtenerClientePorI
 // mostrar todos los registros de clientes
 Router::get('/clientes/All', [ClientesController::class, 'TablaClientes']);
 
-// obtener nombres e id de los proveedores
-Router::get('/Proveedores/NombreID', [ProveedorController::class, 'NombreIDProveedor']);
-
 // Realizar detalles de compras x id y json
 Router::post('/orden/Detalles', [Ordenes_comprasController::class, 'agregarDetalleCompras']);
 
 // Crear un nuevo servicio
 Router::post('/crear-servicio', [TiposServiciosController::class, 'crearServicio']);
+
+Router::post('/publicarono', [TiposServiciosController::class, 'publicarono']);
 
 // Mover un servicio a borrador
 Router::post('/mover-servicio-a-borrador', [TiposServiciosController::class, 'moverServicioABorrador']);
@@ -146,11 +145,11 @@ Router::post('/data', [VentasController::class, 'fecha']);
 
 // busqueda de productos
 Router::post('/buscar', [MostrarProductosController::class, 'buscarProducto']);
+Router::post('/buscarInterno', [MostrarProductosController::class, 'buscarProductoInterno']);
 
 Router::post('/buscarlimit', [MostrarProductosController::class, 'buscarProductolimite']);
 
-// busqueda de productos internos
-Router::post('/buscarInterno', [MostrarProductosController::class, 'buscarProductoInterno']);
+Router::post('/buscarID', [MostrarProductosController::class, 'buscarProductoID']);
 
 // Realizar compra 
 Router::post('/orden/compra', [Ordenes_comprasController::class, 'CrearOrdenCompra']);
@@ -180,6 +179,20 @@ Router::post('/ServiciosEsteticos', [citasController::class, 'ServiciosEsteticos
 Router::post('/CitasPendientesCliente', [citasController::class, 'CitasPendientesCliente']);
 Router::post('/ValidacionFechas', [citasController::class, 'ValidacionFechas']);
 Router::post('/NotiCorreo', [citasController::class, 'NotiCorreo']);
+
+
+
+
+Router::post('/agregarservicioproduct', [TiposServiciosController::class, 'CrearTipoServicioYProductos']);
+
+Router::get('/serviciospublicos', [TiposServiciosController::class, 'serviciospublicos']);
+Router::get('/serviciosprivados', [TiposServiciosController::class, 'serviciosprivados']);
+Router::get('/serviciospublicosesteticos', [TiposServiciosController::class, 'serviciospublicosesteticos']);
+Router::get('/serviciospublicosclinicos', [TiposServiciosController::class, 'serviciospublicosclinicos']);
+Router::get('/serviciosprivadossesteticos', [TiposServiciosController::class, 'serviciosprivadossesteticos']);
+Router::get('/serviciosprivadosclinicos', [TiposServiciosController::class, 'serviciosprivadosclinicos']);
+
+
 
 
 // AGREGAR PRODUCTO 
@@ -217,6 +230,12 @@ Router::post('/CostosAfter',[GenerarConsultasController::class, 'CostosAfter']);
 
 Router::get('/total_citas', [MostrarProductosController::class, 'cantidad_citas']);
 Router::get('/total_ventas', [MostrarProductosController::class, 'cantidad_ventas']);
+Router::get('/monto_total', [MostrarProductosController::class, 'montoTotal']);
+
+Router::post('/productoxcadena', [MostrarProductosController::class, 'productoporcadena']);
+
+Router::post('/productopublicoporcadena', [MostrarProductosController::class, 'productopublicoporcadena']);
+
 
 Router::get('/citas_total', [citasController::class, 'citasTot']);
 Router::get('/citas_aceptadas', [citasController::class, 'citasAceptadas']);
@@ -224,56 +243,9 @@ Router::get('/citas_aceptadas', [citasController::class, 'citasAceptadas']);
 Router::post('/citas_id', [citasController::class, 'cita_id']);
 Router::post('/citasResponse', [citasController::class, 'rechazar_aceptar_cita']);
 
+Router::post('/citasAceptadasResponse', [citasController::class, 'rechazar_completar_cita']);
+Router::get('/verificacion', [LoginController::class, 'verificacion']);
 
+Router::post('/venta', [VentasController::class, 'venta']);
 
-
-
-
-
-
-
-
-
-// Router::get('/', function() {
-//     // código para generar y enviar la página HTML de inicio
-//     echo '
-//         <!DOCTYPE html>
-//         <html lang="en">
-//         <head>
-//             <meta charset="UTF-8">
-//             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//             <title>Backend</title>
-//         </head>
-//         <body>
-//             <div class="ctn">
-//                 <div class="title">
-//                     <h1>Backend.</h1><br>
-//                 </div>
-//             </div>
-
-//             <style>
-//                 body{
-//                     margin: 0;
-//                     padding: 0;
-//                 }
-//                 .ctn{
-//                     background-color: #f3b606;
-//                     width: 100%;
-//                     height: 100vh;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                 }
-
-//                 .title{
-//                     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-//                     font-size: 2em;
-//                 }
-
-//             </style>
-//         </body>
-//         </html>
-//     ';
-// });
-
-// 
+Router::get('/GenerarTiket', [VentasController::class, 'tiket']);

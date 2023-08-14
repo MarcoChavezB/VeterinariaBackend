@@ -7,13 +7,15 @@ use PDO;
 
 class tipos_servicios extends Models{
 
-    public $tipo_servicio = "";
+    public $id = "";
+    public $nombre_Tservicio = "";
     public $id_servicio = "";
+    public $descripcion = "";
+    public $precio = "";
+    public $estado = "";
 
     protected $filleable = [
-        "tipo_servicio", "id_servicio"
+        "id", "nombre_TServicio", "id_servicio", "descripcion", "precio", "estado"
     ];
-
     protected $table = "tipos_servicios";
-
 }

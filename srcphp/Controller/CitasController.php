@@ -20,6 +20,9 @@ use PHPMailer\PHPMailer\Exception;
 
 class citasController
 {
+
+ 
+    
     function mostrarCitasPendientes()
     {
         $t = Table::query("SELECT *
@@ -309,4 +312,37 @@ class citasController
 
 
 
+    function CrearRegistroVeterinario() {
+        $JSONData = file_get_contents("php://input");
+        $dataObject = json_decode($JSONData);
+    
+        $params = [
+            'userregis'       => $dataObject->userregis,
+            'correo'          => $dataObject->correo,
+            'p_nombre'        => $dataObject->nombre,
+            'p_apellido'      => $dataObject->apellido,
+            'p_telefono1'     => $dataObject->telefono1,
+            'p_telefono2'     => $dataObject->telefono2,
+            'p_nombre_animal' => $dataObject->nombre_animal,
+            'p_especie'       => $dataObject->especie,
+            'p_raza'          => $dataObject->raza,
+            'p_genero'        => $dataObject->genero,
+            'p_fecha_cita'    => $dataObject->fecha_cita,
+            'p_estatus'       => $dataObject->estatus,
+            'p_motivo'        => $dataObject->motivo
+        ];
+    
+        try {
+            $resultados = Table::queryParams("CALL CrearRegistroVeterinario(:userregis, :correo, :p_nombre, :p_apellido, :p_telefono1, :p_telefono2, :p_nombre_animal, :p_especie, :p_raza, :p_genero, :p_fecha_cita, :p_estatus, :p_motivo)", $params);
+    
+            $r = new Success($resultados);
+            return $r->Send();
+    
+        } catch (PDOException $e) {
+            $r = new Error($e->getMessage());
+            return $r->Send();
+        }
+    }
+    
+    
 }

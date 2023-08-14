@@ -18,6 +18,7 @@ class LoginController
             $contrasena = $dataObject->contrasena;
 
             $resultado = $this->verificarUsuario($correo, $contrasena);
+            
 
             if ($resultado) {
                 
@@ -39,17 +40,17 @@ class LoginController
         }
     }
     
-    private function verificarUsuario($correo, $contrasena)
+    function verificarUsuario($correo, $contrasena)
     {
         $resultados = Table::queryParams("SELECT * FROM clientes WHERE correo = :correo", ['correo' => $correo]);
-
         
         if (count($resultados) > 0) {
             $usuario = $resultados[0];
-            if ($usuario->contrasena === $contrasena) {
+            if ($usuario->contra === $contrasena) {
                 return $resultados; 
             }
         }
+        
         return false;
     }
 }
