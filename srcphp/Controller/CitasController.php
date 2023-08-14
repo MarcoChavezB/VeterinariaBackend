@@ -228,41 +228,37 @@ class citasController
         return $r;
 
     }
-
-    function rechazar_completar_cita (){
+    function CrearRegistroVeterinario() {
+        $JSONData = file_get_contents("php://input");
+        $dataObject = json_decode($JSONData);
+    
+        $params = [
+            'userregis'       => $dataObject->userregis,
+            'correo'          => $dataObject->correo,
+            'p_nombre'        => $dataObject->nombre,
+            'p_apellido'      => $dataObject->apellido,
+            'p_telefono1'     => $dataObject->telefono1,
+            'p_telefono2'     => $dataObject->telefono2,
+            'p_nombre_animal' => $dataObject->nombre_animal,
+            'p_especie'       => $dataObject->especie,
+            'p_raza'          => $dataObject->raza,
+            'p_genero'        => $dataObject->genero,
+            'p_fecha_cita'    => $dataObject->fecha_cita,
+            'p_estatus'       => $dataObject->estatus,
+            'p_motivo'        => $dataObject->motivo
+        ];
+    
         try {
-            $JSONData = file_get_contents("php://input");
-            $dataObject = json_decode($JSONData);
-
-            $id_cita = $dataObject->cita_id;
-            $cita_estatus = $dataObject->cita_respuesta;            
-
-            $products = $this->rechazar_completar_cita_query($id_cita, $cita_estatus);
-            $response = ['data' => $products];
-
-
-            header('Content-Type: application/json');
-            echo json_encode(['message' => 'Procedimiento ejecutado correctamente', 'data' => $response]);
-            
-        } catch (\Exception $e) {
-            $errorResponse = ['message' => "Error en el servidor: " . $e->getMessage()];
-            header('Content-Type: application/json');
-            echo json_encode($errorResponse);
-            http_response_code(500);
+            $resultados = Table::queryParams("CALL CrearRegistroVeterinario(:userregis, :correo, :p_nombre, :p_apellido, :p_telefono1, :p_telefono2, :p_nombre_animal, :p_especie, :p_raza, :p_genero, :p_fecha_cita, :p_estatus, :p_motivo)", $params);
+    
+            $r = new Success($resultados);
+            return $r->Send();
+    
+        } catch (PDOException $e) {
+            $r = new Error($e->getMessage());
+            return $r->Send();
         }
     }
-
-    function rechazar_completar_cita_query($id_cita, $cita_estatus) {
-        $r = table::queryParams("CALL cambiar_estatus_cita_aceptada(:id_cita,:cita_estatus)",
-            
-            [
-                'id_cita' => $id_cita,
-                'cita_estatus' => $cita_estatus,
-            ]
-        
-        );
-        echo 'success', $r;
-        return $r;
-
-    }
+    
+    
 }

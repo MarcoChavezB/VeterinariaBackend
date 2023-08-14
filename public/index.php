@@ -92,13 +92,10 @@ Router::get('/bajaProductos', [MostrarProductosController::class, 'mostrarProduc
 Router::post('/precios', [MostrarProductosController::class, 'rangoPrecios']);
 
 // para actualizar un cliente
-Router::post('/clientes/actualizar', [ClientesController::class, 'actualizarCliente']);
+Router::post('/clientes/actualizar', [ClientesController::class, 'actualizarUsuario']);
 
 // Para buscar cliente x correo
 Router::post('/clientes/infoCorreo', [ClientesController::class, 'buscarPorCorreo']);
-
-// obtener el id del cliente
-Router::post('/clientes/info', [ClientesController::class, 'consultarIDcliente']);
 
 // obtener toda info cliente x id
 Router::post('/clientes/infoID', [ClientesController::class, 'obtenerClientePorID']);
@@ -106,14 +103,13 @@ Router::post('/clientes/infoID', [ClientesController::class, 'obtenerClientePorI
 // mostrar todos los registros de clientes
 Router::get('/clientes/All', [ClientesController::class, 'TablaClientes']);
 
-// obtener nombres e id de los proveedores
-Router::get('/Proveedores/NombreID', [ProveedorController::class, 'NombreIDProveedor']);
-
 // Realizar detalles de compras x id y json
 Router::post('/orden/Detalles', [Ordenes_comprasController::class, 'agregarDetalleCompras']);
 
 // Crear un nuevo servicio
 Router::post('/crear-servicio', [TiposServiciosController::class, 'crearServicio']);
+
+Router::post('/publicarono', [TiposServiciosController::class, 'publicarono']);
 
 // Mover un servicio a borrador
 Router::post('/mover-servicio-a-borrador', [TiposServiciosController::class, 'moverServicioABorrador']);

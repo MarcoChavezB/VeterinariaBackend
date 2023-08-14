@@ -6,7 +6,6 @@
     use Carbon\Carbon;
     use proyecto\Models\Usuarios;
 
-
     class Auth
     {
         private $Usuarios;

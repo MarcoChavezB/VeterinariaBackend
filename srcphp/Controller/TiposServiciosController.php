@@ -113,4 +113,22 @@ class TiposServiciosController{
                 return $r->Send();
             }
         }
+
+
+        function publicarono()
+    {
+        try {
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $resultados = Table::query(" CALL TipoServicioEstado ('{$dataObject->id_servicio}')");
+
+            $r = new Success($resultados);
+            return $r->Send();
+        } catch (\Exception $e) {
+            $r = new Failure(401, $e->getMessage());
+            return $r->Send();
+        }
+    }
+
     }
