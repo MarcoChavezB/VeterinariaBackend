@@ -97,17 +97,11 @@ Router::post('/clientes/actualizar', [ClientesController::class, 'actualizarUsua
 // Para buscar cliente x correo
 Router::post('/clientes/infoCorreo', [ClientesController::class, 'buscarPorCorreo']);
 
-// obtener el id del cliente
-Router::post('/clientes/info', [ClientesController::class, 'consultarIDcliente']);
-
 // obtener toda info cliente x id
 Router::post('/clientes/infoID', [ClientesController::class, 'obtenerClientePorID']);
 
 // mostrar todos los registros de clientes
 Router::get('/clientes/All', [ClientesController::class, 'TablaClientes']);
-
-// obtener nombres e id de los proveedores
-Router::get('/Proveedores/NombreID', [ProveedorController::class, 'NombreIDProveedor']);
 
 // Realizar detalles de compras x id y json
 Router::post('/orden/Detalles', [Ordenes_comprasController::class, 'agregarDetalleCompras']);

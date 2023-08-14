@@ -13,7 +13,7 @@ class ClientesController{
     private $conexion;
 
     public function __construct() {
-        $this->conexion = new Conexion('BD', 'localhost', 'root', '');
+        $this->conexion = new Conexion('consultasveterinaria', 'localhost', 'root', '');
     }
 
     // Método para actualizar un cliente
@@ -53,13 +53,9 @@ class ClientesController{
             $sql .= "telefono2 = :telefono2, ";
             $values[':telefono2'] = $dataObject->telefono2;
         }
-        if (property_exists($dataObject, 'contrasena')) {
-            $sql .= "contrasena = :contrasena, ";
-            $values[':contrasena'] = $dataObject->contrasena;
-        }
-        if (property_exists($dataObject, 'fotourl')) {
-            $sql .= "fotourl = :fotourl, ";
-            $values[':fotourl'] = $dataObject->fotourl;
+        if (property_exists($dataObject, 'contra')) {
+            $sql .= "contra = :contra, ";
+            $values[':contra'] = $dataObject->contra;
         }
 
         // Remove trailing comma and add WHERE clause
@@ -107,7 +103,7 @@ class ClientesController{
 
     function TablaClientes () {
         try{
-            $resultados = Table::query("SELECT * FROM VistaClientes;");
+            $resultados = Table::query("SELECT * FROM clientes;");
     
             $r = new Success($resultados);
             return $r->Send();
@@ -125,7 +121,7 @@ class ClientesController{
             $JSONData = file_get_contents("php://input");
             $dataObject = json_decode($JSONData);
     
-            $resultados = Table::queryParams("CALL GetClientePorId(:id)", ['id' => $dataObject->id]);
+            $resultados = Table::queryParams("CALL GetClientePorId(:idd)", ['idd' => $dataObject->id]);
     
             if($resultados) {
                 $r = new Success($resultados[0]);
