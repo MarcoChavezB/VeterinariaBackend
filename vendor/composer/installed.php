@@ -49,7 +49,11 @@
         'proyecto/oop' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
+            'reference' => '841b9121dbbd8b227d89b7c7b4e5f9882807195a',
+=======
             'reference' => 'fc12405f7bede64c61b4968ec8276e88b2fa908a',
+>>>>>>> 9ef34052699f77ad5395d50bc280c19114a1ea17
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

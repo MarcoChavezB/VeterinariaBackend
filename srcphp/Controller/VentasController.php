@@ -81,7 +81,7 @@ class VentasController
         $r = table::queryParams("call venta_productos(:metodo_pago, :productos)",
             [
                 'metodo_pago' => $metodo_pago,
-                'productos' => json_encode($productos), 
+                'productos' => $productos, 
             ]
         );
         return $r;
