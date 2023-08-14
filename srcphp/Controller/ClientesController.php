@@ -89,7 +89,7 @@ class ClientesController{
         $dataObject = json_decode($JSONData);
     
         if(isset($dataObject->cadena)) {
-            $resultados = Table::queryParams("CALL BuscarCorreo(:cadena)", ['cadena' => $dataObject->cadena]);
+            $resultados = Table::queryParams("CALL BuscarPorCampos(:cadena)", ['cadena' => $dataObject->cadena]);
         } else {
             throw new \Exception("Debe proporcionar un correo para buscar.");
         }
