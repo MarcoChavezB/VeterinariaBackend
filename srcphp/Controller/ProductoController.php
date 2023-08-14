@@ -48,10 +48,11 @@ class ProductoController
             $tipo_producto = $dataObject->tipo_producto;
             $existencias = $dataObject->cantidad_pructos;
             $precio_venta = $dataObject->precio_venta;
+            $precio_compra = $dataObject->precio_compra;
             $categoria = $dataObject->categoria_producto;
     
             // Llamar al método con los parámetros adecuados
-            $products = $this->AgregarProductoPublicoQuery($nom_producto, $descripcion, $tipo_producto, $precio_venta, $categoria, $existencias);
+            $products = $this->AgregarProductoPublicoQuery($nom_producto, $descripcion, $tipo_producto, $precio_venta, $categoria, $existencias, $precio_compra);
     
             $response = ['data' => $products];
     
@@ -65,16 +66,17 @@ class ProductoController
         }
     }
     
-    function AgregarProductoPublicoQuery($nom_producto, $descripcion, $tipo_producto, $precio_venta, $categoria, $existencias)
+    function AgregarProductoPublicoQuery($nom_producto, $descripcion, $tipo_producto, $precio_venta, $categoria, $existencias, $precio_compra)
     {
         
-        $t = table::queryParams("CALL insertar_producto_publico(:nom_producto, :descripcion, :tipo_producto, :existencias, :precio_venta, :categoria)", [
+        $t = table::queryParams("CALL insertar_producto_publico(:nom_producto, :descripcion, :tipo_producto, :existencias, :precio_venta, :categoria, :precio_compra)", [
             'nom_producto' => $nom_producto,
             'descripcion' => $descripcion,
             'tipo_producto' => $tipo_producto,
             'precio_venta' => $precio_venta,
             'categoria' => $categoria,
             'existencias' => $existencias,
+            'precio_compra' => $precio_compra,
         ]);
     
         return $t;
