@@ -240,63 +240,12 @@ Router::post('/productopublicoporcadena', [MostrarProductosController::class, 'p
 Router::get('/citas_total', [citasController::class, 'citasTot']);
 Router::get('/citas_aceptadas', [citasController::class, 'citasAceptadas']);
 
-
 Router::post('/citas_id', [citasController::class, 'cita_id']);
 Router::post('/citasResponse', [citasController::class, 'rechazar_aceptar_cita']);
 
 Router::post('/citasAceptadasResponse', [citasController::class, 'rechazar_completar_cita']);
-
 Router::get('/verificacion', [LoginController::class, 'verificacion']);
-
 
 Router::post('/venta', [VentasController::class, 'venta']);
 
 Router::get('/GenerarTiket', [VentasController::class, 'tiket']);
-
-
-
-
-
-// Router::get('/', function() {
-//     // código para generar y enviar la página HTML de inicio
-//     echo '
-//         <!DOCTYPE html>
-//         <html lang="en">
-//         <head>
-//             <meta charset="UTF-8">
-//             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//             <title>Backend</title>
-//         </head>
-//         <body>
-//             <div class="ctn">
-//                 <div class="title">
-//                     <h1>Backend.</h1><br>
-//                 </div>
-//             </div>
-
-//             <style>
-//                 body{
-//                     margin: 0;
-//                     padding: 0;
-//                 }
-//                 .ctn{
-//                     background-color: #f3b606;
-//                     width: 100%;
-//                     height: 100vh;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                 }
-
-//                 .title{
-//                     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-//                     font-size: 2em;
-//                 }
-
-//             </style>
-//         </body>
-//         </html>
-//     ';
-// });
-
-// 

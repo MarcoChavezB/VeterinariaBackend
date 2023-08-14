@@ -128,8 +128,9 @@ class ProductoController
             $descripcion = $dataObject->descripcion;
             $categoria = $dataObject->categoria;
             $precio_venta = $dataObject->precio_venta;
+            $precio_compra = $dataObject->precio_compra;
 
-            $products = $this->modificarDataProductoQuerry($nom_producto, $descripcion, $categoria, $precio_venta );
+            $products = $this->modificarDataProductoQuerry($nom_producto, $descripcion, $categoria, $precio_venta, $precio_compra );
             $response = ['data' => $products];
 
 
@@ -144,14 +145,15 @@ class ProductoController
         }
     }
 
-    function modificarDataProductoQuerry($nom_producto, $descripcion, $categoria, $precio_venta) {
-        $r = table::queryParams("call actualizar_producto(:nom_producto, :descripcion, :categoria, :precio_venta)",
+    function modificarDataProductoQuerry($nom_producto, $descripcion, $categoria, $precio_venta, $precio_compra) {
+        $r = table::queryParams("call actualizar_producto(:nom_producto, :descripcion, :categoria, :precio_venta, :precio_compra)",
             
             [
                 'nom_producto' => $nom_producto,
                 'descripcion' => $descripcion,
                 'categoria' => $categoria,
                 'precio_venta' => $precio_venta,
+                'precio_compra' => $precio_compra,
             ]
         
         );

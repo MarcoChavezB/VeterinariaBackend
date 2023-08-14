@@ -3,7 +3,7 @@
         'name' => 'proyecto/oop',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '6ec10f1085d9909ba6a0f8dcaf2c942f9ca8d689',
+        'reference' => '841b9121dbbd8b227d89b7c7b4e5f9882807195a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -49,7 +49,7 @@
         'proyecto/oop' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '6ec10f1085d9909ba6a0f8dcaf2c942f9ca8d689',
+            'reference' => '841b9121dbbd8b227d89b7c7b4e5f9882807195a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

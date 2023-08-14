@@ -55,7 +55,7 @@ class MostrarProductosController
                 MAX(precio_venta) as precio_venta, 
                 (MAX(precio_venta) * 0.16) as iva,
                 CASE 
-                    WHEN MAX(existencias) = 0 THEN 'Sin stock'
+                    WHEN MAX(existencias) <= 0 THEN 'Sin stock'
                     ELSE 'Stock'
                 END as estado
             FROM productos
@@ -81,7 +81,7 @@ class MostrarProductosController
         MAX(precio_venta) as precio_venta, 
         (MAX(precio_venta) * 0.16) as iva,
         CASE 
-            WHEN MAX(existencias) = 0 THEN 'Sin stock'
+            WHEN MAX(existencias) <= 0 THEN 'Sin stock'
             ELSE 'Stock'
         END as estado
     FROM productos
