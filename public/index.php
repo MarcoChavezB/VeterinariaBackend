@@ -178,6 +178,9 @@ Router::post('/MascotasUsuario', [citasController::class, 'MascotasUsuario']);
 Router::post('/ServiciosClinicos', [citasController::class, 'ServiciosClinicos']);
 Router::post('/ServiciosEsteticos', [citasController::class, 'ServiciosEsteticos']);
 Router::post('/CitasPendientesCliente', [citasController::class, 'CitasPendientesCliente']);
+Router::post('/ValidacionFechas', [citasController::class, 'ValidacionFechas']);
+Router::post('/NotiCorreo', [citasController::class, 'NotiCorreo']);
+
 
 // AGREGAR PRODUCTO 
 Router::post('/agregarProducto', [ProductoController::class, 'AgregarProductoPublico']);
@@ -209,6 +212,8 @@ Router::post('/GenerarConsultasFecha',[GenerarConsultasController::class, 'Gener
 Router::post('/BuscarMedicamentos',[GenerarConsultasController::class, 'BuscarMedicamentos']);
 Router::post('/RegistroConsulta',[GenerarConsultasController::class, 'RegistroConsulta']);
 Router::post('/TServicios',[GenerarConsultasController::class, 'TServicios']);
+Router::post('/CostosAfter',[GenerarConsultasController::class, 'CostosAfter']);
+
 
 Router::get('/total_citas', [MostrarProductosController::class, 'cantidad_citas']);
 Router::get('/total_ventas', [MostrarProductosController::class, 'cantidad_ventas']);

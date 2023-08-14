@@ -10,6 +10,13 @@ use proyecto\Models\Animales;
 use proyecto\Models\Clientes;
 use proyecto\Response\Failure;
 
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
 
 class citasController
 {
@@ -28,6 +35,11 @@ class citasController
     }
 
     function agendarcita() {
+
+
+
+        $mail = new PHPMailer(true);
+
         try {
             $JSONData = file_get_contents("php://input");
             $dataObject = json_decode($JSONData);
@@ -40,13 +52,41 @@ class citasController
             $cita->motivo = $dataObject->motivo;
             $cita->save();
 
+
+
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'vetcachorrosdoc@gmail.com';
+            $mail->Password = 'wqixaoqjmmxaklqo';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+            //Recipients
+            $mail->setFrom('vetcachorrosdoc@gmail.com');
+            $mail->addAddress('vetcachorrosdoc@gmail.com');
+
+            //Content
+            $mail->isHTML(true);
+            $mail->Subject = 'Se ha generado una nueva cita!';
+            $mail->Body = 'Se ha generado una nueva cita, no dudes en validar la cita lo mas pronto posible.';
+
+            $mail->send();
+
+
+
+
             $r = new Success($cita);
             return $r->Send();
-        } catch (\Exception $e) {
+        }  catch (\Exception $e) {
             $r = new Failure(401, $e->getMessage());
             return $r->Send();
         }
+
     }
+
+
+
 
     function MascotasUsuario() {
         try {
@@ -54,6 +94,21 @@ class citasController
             $dataObject = json_decode($JSONData);
 
             $resultados = Table::query("CALL MascotasUsuario ('{$dataObject->id_cliente}') ");
+
+            $r = new Success($resultados);
+            return $r->Send();
+        } catch (\Exception $e) {
+            $r = new Failure(401, $e->getMessage());
+            return $r->Send();
+        }
+    }
+
+    function ValidacionFechas() {
+        try {
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $resultados = Table::query("SELECT * FROM ValidacionFechas ");
 
             $r = new Success($resultados);
             return $r->Send();
@@ -190,7 +245,12 @@ class citasController
 
             header('Content-Type: application/json');
             echo json_encode(['message' => 'Procedimiento ejecutado correctamente', 'data' => $response]);
-            
+
+
+
+
+
+
         } catch (\Exception $e) {
             $errorResponse = ['message' => "Error en el servidor: " . $e->getMessage()];
             header('Content-Type: application/json');
@@ -212,4 +272,41 @@ class citasController
         return $r;
 
     }
+
+
+
+    function NotiCorreo(){
+
+        $mail = new PHPMailer(true);
+
+        try {
+
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'vetcachorrosdoc@gmail.com';
+            $mail->Password = 'wqixaoqjmmxaklqo';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+            //Recipients
+            $mail->setFrom('vetcachorrosdoc@gmail.com');
+            $mail->addAddress($dataObject->correo_u);
+
+            //Content
+            $mail->isHTML(true);
+            $mail->Subject = 'Estatus de tu cita!';
+            $mail->Body = 'Se ha validado tu cita, asegurate de entrar a nuestra aplicaicon web para verificar su estado, para dudas o sugerencias puedes contactarnos al +528711034602';
+
+            $mail->send();
+        }catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+
+
+
 }
