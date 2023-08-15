@@ -8,6 +8,23 @@ use PDO;
 
 class ReportesController {
 
+
+    function ReporteConsultas()
+    {
+        try {
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $resultados = Table::query(" CALL ReporteConsultas ('{$dataObject->nomC}','{$dataObject->apellidos}', '{$dataObject->nomM}')");
+
+            $r = new Success($resultados);
+            return $r->Send();
+        } catch (\Exception $e) {
+            $r = new Failure(401, $e->getMessage());
+            return $r->Send();
+        }
+    }
+
     function historialMedico()
     {
         try {
