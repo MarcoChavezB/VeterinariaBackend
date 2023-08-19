@@ -234,6 +234,40 @@ class citasController
         return $r;
 
     }
+
+
+    
+    function correo_cita (){
+        try {
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $cita_id = $dataObject->cita_id;            
+
+            $cita = $this->correo_cita_query($cita_id);
+            $response = ['data' => $cita];
+
+            header('Content-Type: application/json');
+            echo json_encode(['message' => 'Procedimiento ejecutado correctamente', 'data' => $response]);
+            
+        } catch (\Exception $e) {
+            $errorResponse = ['message' => "Error en el servidor: " . $e->getMessage()];
+            header('Content-Type: application/json');
+            echo json_encode($errorResponse);
+            http_response_code(500);
+        }
+    }
+
+    function correo_cita_query ($cita_id) {
+        $r = table::queryParams("Call obtener_correo_por_id(:cita_id)",
+    [
+        'cita_id' => $cita_id
+    ]);
+        return $r;
+    }
+
+
+
     function rechazar_aceptar_cita (){
         try {
             $JSONData = file_get_contents("php://input");
@@ -261,6 +295,8 @@ class citasController
             http_response_code(500);
         }
     }
+
+
 
     function rechazar_aceptar_cita_query($id_cita, $cita_estatus) {
         $r = table::queryParams("CALL cambiar_estatus_cita(:id_cita,:cita_estatus)",

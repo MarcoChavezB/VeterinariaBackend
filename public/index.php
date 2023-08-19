@@ -236,27 +236,25 @@ Router::post('/GenerarConsultasFecha',[GenerarConsultasController::class, 'Gener
 Router::post('/BuscarMedicamentos',[GenerarConsultasController::class, 'BuscarMedicamentos']);
 Router::post('/RegistroConsulta',[GenerarConsultasController::class, 'RegistroConsulta']);
 Router::post('/TServicios',[GenerarConsultasController::class, 'TServicios']);
+<<<<<<< HEAD
+=======
 Router::post('/CostosAfter',[GenerarConsultasController::class, 'CostosAfter']);
 
 
+>>>>>>> 8dcbba4845f00bcf96d6347687e69ecd0087ee61
 Router::get('/total_citas', [MostrarProductosController::class, 'cantidad_citas']);
 Router::get('/total_ventas', [MostrarProductosController::class, 'cantidad_ventas']);
 Router::get('/monto_total', [MostrarProductosController::class, 'montoTotal']);
-
 Router::post('/productoxcadena', [MostrarProductosController::class, 'productoporcadena']);
-
 Router::post('/productopublicoporcadena', [MostrarProductosController::class, 'productopublicoporcadena']);
-
-
 Router::get('/citas_total', [citasController::class, 'citasTot']);
 Router::get('/citas_aceptadas', [citasController::class, 'citasAceptadas']);
-
 Router::post('/citas_id', [citasController::class, 'cita_id']);
 Router::post('/citasResponse', [citasController::class, 'rechazar_aceptar_cita']);
-
 Router::post('/citasAceptadasResponse', [citasController::class, 'rechazar_completar_cita']);
 Router::get('/verificacion', [LoginController::class, 'verificacion']);
-
 Router::post('/venta', [VentasController::class, 'venta']);
-
+Router::post('/CancelarCompra', [VentasController::class, 'revertir']);
 Router::get('/GenerarTiket', [VentasController::class, 'tiket']);
+Router::post('/mandarCorreo', [citasController::class, 'correo_cita']);
+Router::post('/revisar_producto', [ProductoController::class, 'verificar_producto']);
