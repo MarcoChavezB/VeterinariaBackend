@@ -29,6 +29,7 @@ class ComposerStaticInitfb9c27f0811c6f21e183fe25a1c15d8b
         ),
         'P' => 
         array (
+            'Psr\\Clock\\' => 10,
             'PhpOption\\' => 10,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
@@ -74,6 +75,10 @@ class ComposerStaticInitfb9c27f0811c6f21e183fe25a1c15d8b
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Psr\\Clock\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/clock/src',
         ),
         'PhpOption\\' => 
         array (

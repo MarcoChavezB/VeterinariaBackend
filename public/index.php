@@ -1,7 +1,7 @@
 <?php
 namespace proyecto;
 require("../vendor/autoload.php");
-
+use PDO;
 use proyecto\Controller\LoginController;
 use proyecto\Controller\RegistroController;
 use proyecto\Controller\MostrarProductosController;
@@ -19,15 +19,27 @@ use proyecto\Controller\ReportesController;
 use proyecto\Controller\HistorialMedicoController;
 use proyecto\Controller\TiposServiciosController;
 use proyecto\Controller\RegisterController;
+use proyecto\Models\TiposServicio;
+use proyecto\Models\Models;
+
 
 Router::headers();
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 // funcion de prueba
-Router::get("/pru", function(){
-    $r = new Success("funcionando");
-    $r->Send();
+
+
+Router::get('/prueba',function(){
+    try{
+        $db =(array) TiposServicio::all()[0];
+
+        $response = new Success($db);
+        $response->send();
+        echo "Conexion exitosa";
+    }catch(\Exception $e){
+        echo $e->getMessage();
+    }
 });
 
 
@@ -62,7 +74,7 @@ Router::post('/TablaProveedor',[ProveedorController::class, 'TablaProveedor']);
 
 Router::post('/registrarMascota', [MascotasController::class, 'registrarMascota']);
 
-// verificacion de correo 
+// verificacion de correo
 Router::post('/verificarCorreoR', [RegistroController::class, 'verificarCorreo']);
 
 // Ruta de registro de clientes [Pantalla Registro]
@@ -131,8 +143,12 @@ Router::get('/obtenerTodosTiposServiciosView', [TiposServiciosController::class,
 
 // funcion de prueba
 Router::get("/pru", function(){
-    $r = new Success("funcionando");
-    $r->Send();
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=consultasveterinaria', "anthony", "2023-qwerty");
+        echo "Conexión exitosa!";
+    } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
 });
 // Mandar Productos Publicos
 Router::get('/productosPublicos', [MostrarProductosController::class, 'mostrarProductsPublic']);
@@ -151,18 +167,18 @@ Router::post('/buscarlimit', [MostrarProductosController::class, 'buscarProducto
 
 Router::post('/buscarID', [MostrarProductosController::class, 'buscarProductoID']);
 
-// Realizar compra 
+// Realizar compra
 Router::post('/orden/compra', [Ordenes_comprasController::class, 'CrearOrdenCompra']);
 
 // obtener todos las ordenes de compras pendientes
 Router::get('/orden/pendientes', [Ordenes_comprasController::class, 'TablaOrdenesCompras']);
 
-// buscar por rango/o No, de fecha de de compra o pago 
+// buscar por rango/o No, de fecha de de compra o pago
 Router::post('/orden/porfecha', [Ordenes_comprasController::class, 'buscarOrdenesPorFecha']);
 
 Router::post('/orden/porestado', [Ordenes_comprasController::class, 'buscarOrdenesPorEstado']);
 
-// Mostrar ventas recientes 
+// Mostrar ventas recientes
 Router::get('/ventasRecientes', [VentasController::class, 'mostrarVentasRecientes']);
 
 // generar cita local, inserccion de cliente, animal y cita
@@ -195,28 +211,23 @@ Router::get('/serviciosprivadosclinicos', [TiposServiciosController::class, 'ser
 
 
 
-// AGREGAR PRODUCTO 
+// AGREGAR PRODUCTO
 Router::post('/agregarProducto', [ProductoController::class, 'AgregarProductoPublico']);
 
 // ALTER PRODUCTO
 Router::post('/alterProduct', [ProductoController::class, 'modificarProducto']);
-
 // ALTER DATA PRODUCT
 Router::post('/dataProd', [ProductoController::class, 'modificarDataProducto']);
-
 // AGREGAR PRODUCTO INTERNO
 Router::post('/dataProdInterno', [ProductoController::class, 'AgregarProductoInterno']);
-
 // MODIFICAR PRODUCTO INTERNO
 Router::post('/alterProdInterno', [ProductoController::class, 'modificarProductoInterno']);
-
 // MODIFICAR PRODUCTO EXISTENTE
 Router::post('/alterProdInternoExistente', [ProductoController::class, 'modificarDataProductoInterno']);
-
-// mostrar proveedore 
+// mostrar proveedore
 Router::get('/proveedores', [ProveedorController::class, 'proveedores']);
 
-// mostrar categorias 
+// mostrar categorias
 Router::get('/categorias', [ProductoController::class, 'mostrarCategorias']);
 
 Router::post('/GenerarConsultas',[GenerarConsultasController::class, 'GenerarConsultas']);

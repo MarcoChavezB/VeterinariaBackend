@@ -1,13 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'proyecto/oop',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-<<<<<<< HEAD
-        'reference' => 'ee617b6171ec5e152fe90e4a80f48f7634ced4b3',
-=======
-        'reference' => 'fc12405f7bede64c61b4968ec8276e88b2fa908a',
->>>>>>> 844b5428e8ae5493163f5a39f816832ba65d6dcd
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => NULL,
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -33,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'nesbot/carbon' => array(
-            'pretty_version' => '2.68.1',
-            'version' => '2.68.1.0',
-            'reference' => '4f991ed2a403c85efbc4f23eb4030063fdbe01da',
+            'pretty_version' => '2.69.0',
+            'version' => '2.69.0.0',
+            'reference' => '4308217830e4ca445583a37d1bf4aff4153fa81c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(),
@@ -60,21 +56,28 @@
             'dev_requirement' => false,
         ),
         'proyecto/oop' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-<<<<<<< HEAD
-            'reference' => 'ee617b6171ec5e152fe90e4a80f48f7634ced4b3',
-=======
-<<<<<<< HEAD
-            'reference' => '841b9121dbbd8b227d89b7c7b4e5f9882807195a',
-=======
-            'reference' => 'fc12405f7bede64c61b4968ec8276e88b2fa908a',
->>>>>>> 9ef34052699f77ad5395d50bc280c19114a1ea17
->>>>>>> 844b5428e8ae5493163f5a39f816832ba65d6dcd
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => NULL,
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'psr/clock' => array(
+            'pretty_version' => '1.0.0',
+            'version' => '1.0.0.0',
+            'reference' => 'e41a24703d4560fd0acb709162f73b8adfc3aa0d',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/clock',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'psr/clock-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
+            ),
         ),
         'symfony/deprecation-contracts' => array(
             'pretty_version' => 'v2.5.2',
