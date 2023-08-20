@@ -107,7 +107,7 @@ class VentasController
         $json_response = json_encode($r);
 
         header('Content-Type: application/json');
-        echo $json_response;
+        echo json_encode($json_response);
     }
     
 }

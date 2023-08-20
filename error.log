@@ -1,0 +1,24 @@
+[Thu Aug 17 01:07:26.991817 2023] [proxy:error] [pid 90109:tid 90167] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:26.991856 2023] [proxy_fcgi:error] [pid 90109:tid 90167] [client 187.190.56.49:63037] AH01079: failed to make connection to backend: httpd-UDS
+[Thu Aug 17 01:07:27.105490 2023] [proxy:error] [pid 90111:tid 90279] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:27.105517 2023] [proxy_fcgi:error] [pid 90111:tid 90279] [client 187.190.56.49:63040] AH01079: failed to make connection to backend: httpd-UDS, referer: http://web.backend.com/prueba
+[Thu Aug 17 01:07:41.184417 2023] [proxy:error] [pid 90111:tid 90271] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:41.184450 2023] [proxy_fcgi:error] [pid 90111:tid 90271] [client 187.190.56.49:36613] AH01079: failed to make connection to backend: httpd-UDS
+[Thu Aug 17 01:07:41.368116 2023] [proxy:error] [pid 90110:tid 90292] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:41.368146 2023] [proxy_fcgi:error] [pid 90110:tid 90292] [client 187.190.56.49:36612] AH01079: failed to make connection to backend: httpd-UDS, referer: http://web.backend.com/info.php
+[Thu Aug 17 01:07:53.528288 2023] [proxy:error] [pid 90111:tid 90272] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:53.528368 2023] [proxy_fcgi:error] [pid 90111:tid 90272] [client 187.190.56.49:63048] AH01079: failed to make connection to backend: httpd-UDS
+[Thu Aug 17 01:07:53.624977 2023] [proxy:error] [pid 90109:tid 90168] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:53.625036 2023] [proxy_fcgi:error] [pid 90109:tid 90168] [client 187.190.56.49:63047] AH01079: failed to make connection to backend: httpd-UDS, referer: http://web.backend.com/info.php
+[Thu Aug 17 01:07:55.917998 2023] [proxy:error] [pid 90111:tid 90289] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:55.918026 2023] [proxy_fcgi:error] [pid 90111:tid 90289] [client 187.190.56.49:37368] AH01079: failed to make connection to backend: httpd-UDS
+[Thu Aug 17 01:07:56.012002 2023] [proxy:error] [pid 90111:tid 90291] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:56.012189 2023] [proxy_fcgi:error] [pid 90111:tid 90291] [client 187.190.56.49:37367] AH01079: failed to make connection to backend: httpd-UDS, referer: http://web.backend.com/info.php
+[Thu Aug 17 01:07:57.589362 2023] [proxy:error] [pid 90110:tid 90296] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:57.589391 2023] [proxy_fcgi:error] [pid 90110:tid 90296] [client 187.190.56.49:36342] AH01079: failed to make connection to backend: httpd-UDS
+[Thu Aug 17 01:07:57.696005 2023] [proxy:error] [pid 90109:tid 90170] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:07:57.696034 2023] [proxy_fcgi:error] [pid 90109:tid 90170] [client 187.190.56.49:36343] AH01079: failed to make connection to backend: httpd-UDS, referer: http://web.backend.com/info.php
+[Thu Aug 17 01:08:07.115476 2023] [proxy:error] [pid 90111:tid 90295] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:08:07.115532 2023] [proxy_fcgi:error] [pid 90111:tid 90295] [client 187.190.56.49:63053] AH01079: failed to make connection to backend: httpd-UDS
+[Thu Aug 17 01:08:07.214313 2023] [proxy:error] [pid 90109:tid 90172] (2)No such file or directory: AH02454: FCGI: attempt to connect to Unix domain socket /run/php-fpm/www.sock (*) failed
+[Thu Aug 17 01:08:07.214353 2023] [proxy_fcgi:error] [pid 90109:tid 90172] [client 187.190.56.49:37484] AH01079: failed to make connection to backend: httpd-UDS, referer: http://web.backend.com/info.php
