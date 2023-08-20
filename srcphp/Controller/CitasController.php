@@ -3,7 +3,7 @@
 namespace proyecto\Controller;
 
 use proyecto\Models\Models;
-use proyecto\models\Table;
+use proyecto\Models\Table;
 use proyecto\Response\Success;
 use proyecto\Models\Citas;
 use proyecto\Models\Animales;
