@@ -144,7 +144,11 @@ class ProductoController
             header('Content-Type: application/json');
             echo json_encode($errorResponse);
             http_response_code(500);
+        
+            // Imprime el error en el servidor para depuración
+            error_log("Error en el servidor: " . $e->getMessage());
         }
+        
     }
 
     function modificarDataProductoQuerry($nom_producto, $descripcion, $categoria, $precio_venta, $precio_compra) {
@@ -332,8 +336,12 @@ class ProductoController
                 return $r->send();
             
             } else {
-                
-                $r = new Failure(401, "El priducto ya existe");
+
+                $response = array(
+                    "message" => "El producto ya existe",
+                    "data" => $resultado 
+                );
+                $r = new Success($response);
                 return $r->send();
             }
 

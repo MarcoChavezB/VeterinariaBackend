@@ -17,7 +17,7 @@
 
         public function __construct()
         {
-            $cc = new  Conexion("consultasveterinaria", "localhost", "root", "");
+            $cc = new  Conexion("bdveterinaria", "127.0.0.1", "root", "10 enero");
             self::$pdo = $cc->getPDO();
         }
 

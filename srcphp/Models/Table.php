@@ -20,7 +20,7 @@ class Table
     static function insertFromJson($query, $json)
     {
         try {
-            $cc = new Conexion("consultasveterinaria", "localhost", "root", "");
+            $cc = new Conexion("bdveterinaria", "127.0.0.1", "root", "10 enero");
             self::$pdo = $cc->getPDO();
     
             $stmt = self::$pdo->prepare($query);
@@ -37,7 +37,7 @@ class Table
 
     static function query($query)
     {
-        $cc = new  Conexion("consultasveterinaria", "localhost", "root", "");
+        $cc = new  Conexion("bdveterinaria", "127.0.0.1", "root", "10 enero");
         self::$pdo = $cc->getPDO();
         $stmt = self::$pdo->query($query);
         $resultados = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -46,7 +46,7 @@ class Table
 
     static function queryParams($query, $params = [])
     {
-        $cc = new Conexion("consultasveterinaria", "localhost", "root", "");
+        $cc = new Conexion("bdveterinaria", "127.0.0.1", "root", "10 enero");
         self::$pdo = $cc->getPDO();
 
         $stmt = self::$pdo->prepare($query);

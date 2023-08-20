@@ -235,7 +235,7 @@ Router::get('/citas_total', [citasController::class, 'citasTot']);
 Router::get('/citas_aceptadas', [citasController::class, 'citasAceptadas']);
 Router::post('/citas_id', [citasController::class, 'cita_id']);
 Router::post('/citasResponse', [citasController::class, 'rechazar_aceptar_cita']);
-Router::post('/citasAceptadasResponse', [citasController::class, 'rechazar_completar_cita']);
+Router::post('/citasAceptadasResponse', [CitasController::class, 'rechazar_aceptar_cita']);
 Router::get('/verificacion', [LoginController::class, 'verificacion']);
 Router::post('/venta', [VentasController::class, 'venta']);
 Router::post('/CancelarCompra', [VentasController::class, 'revertir']);

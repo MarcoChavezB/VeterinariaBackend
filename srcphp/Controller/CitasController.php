@@ -283,11 +283,6 @@ class citasController
             header('Content-Type: application/json');
             echo json_encode(['message' => 'Procedimiento ejecutado correctamente', 'data' => $response]);
 
-
-
-
-
-
         } catch (\Exception $e) {
             $errorResponse = ['message' => "Error en el servidor: " . $e->getMessage()];
             header('Content-Type: application/json');
@@ -295,8 +290,6 @@ class citasController
             http_response_code(500);
         }
     }
-
-
 
     function rechazar_aceptar_cita_query($id_cita, $cita_estatus) {
         $r = table::queryParams("CALL cambiar_estatus_cita(:id_cita,:cita_estatus)",
@@ -309,7 +302,6 @@ class citasController
         );
         echo 'success', $r;
         return $r;
-
     }
 
 
