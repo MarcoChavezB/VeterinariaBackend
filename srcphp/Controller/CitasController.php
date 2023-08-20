@@ -3,20 +3,17 @@
 namespace proyecto\Controller;
 
 use proyecto\Models\Models;
-use proyecto\models\Table;
+use proyecto\Models\Table;
 use proyecto\Response\Success;
 use proyecto\Models\Citas;
 use proyecto\Models\Animales;
 use proyecto\Models\Clientes;
 use proyecto\Response\Failure;
 
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
 
 class citasController
 {
