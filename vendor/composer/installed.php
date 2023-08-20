@@ -58,7 +58,13 @@
         'proyecto/oop' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => 'e936933668116e7a8fa7c3af56ae3e3295f399f0',
+=======
+            'reference' => '844b5428e8ae5493163f5a39f816832ba65d6dcd',
+            'reference' => 'ee617b6171ec5e152fe90e4a80f48f7634ced4b3',
+            'reference' => 'fc12405f7bede64c61b4968ec8276e88b2fa908a',
+>>>>>>> e2656b9527e9515e5f836f5a5bd27fd7d5e10dab
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
