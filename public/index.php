@@ -21,9 +21,8 @@ use proyecto\Controller\TiposServiciosController;
 use proyecto\Controller\RegisterController;
 use proyecto\Models\TiposServicio;
 use proyecto\Models\Models;
+use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(_DIR_);
-$dotenv->load();
 
 Router::headers();
 
