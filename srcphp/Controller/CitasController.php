@@ -59,13 +59,13 @@ class citasController
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = $_ENV['SMTPMail'];
-            $mail->Password = $_ENV['MailPassword'];
+            $mail->Username = 'vetcachorrosdoc@gmail.com';
+            $mail->Password = 'wqixaoqjmmxaklqo';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
             $mail->setFrom('vetcachorrosdoc@gmail.com');
-            $mail->addAddress($_ENV['SMTPMail']);
+            $mail->addAddress('vetcachorrosdoc@gmail.com');
 
             $mail->isHTML(true);
             $mail->Subject = 'Nueva cita programada!';
