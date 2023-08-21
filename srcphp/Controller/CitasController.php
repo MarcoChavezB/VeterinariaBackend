@@ -44,8 +44,8 @@ class citasController
             $JSONData = file_get_contents("php://input");
             $dataObject = json_decode($JSONData);
 
-            $citasExistentes = Citas::where('fecha_cita', '=', $dataObject->fechaCita);
-            if (isset($citasExistentes[0])) {
+            $citasExistentes = Citas::where('fecha_cita', '=', $dataObject->fechaCita)->count();
+            if ($citasExistentes > 0) {
                 $r = new Failure(400, 'Esa fecha y hora ya están ocupadas. Por favor, selecciona otra fecha y hora.');
                 return $r->Send();
             }
