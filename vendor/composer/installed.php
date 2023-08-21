@@ -3,11 +3,7 @@
         'name' => 'proyecto/oop',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-<<<<<<< HEAD
-        'reference' => 'ee617b6171ec5e152fe90e4a80f48f7634ced4b3',
-=======
-        'reference' => 'fc12405f7bede64c61b4968ec8276e88b2fa908a',
->>>>>>> 844b5428e8ae5493163f5a39f816832ba65d6dcd
+        'reference' => '8dcbba4845f00bcf96d6347687e69ecd0087ee61',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -62,15 +58,7 @@
         'proyecto/oop' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-<<<<<<< HEAD
-            'reference' => 'ee617b6171ec5e152fe90e4a80f48f7634ced4b3',
-=======
-<<<<<<< HEAD
-            'reference' => '841b9121dbbd8b227d89b7c7b4e5f9882807195a',
-=======
-            'reference' => 'fc12405f7bede64c61b4968ec8276e88b2fa908a',
->>>>>>> 9ef34052699f77ad5395d50bc280c19114a1ea17
->>>>>>> 844b5428e8ae5493163f5a39f816832ba65d6dcd
+            'reference' => '8dcbba4845f00bcf96d6347687e69ecd0087ee61',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -135,6 +123,15 @@
             'provided' => array(
                 0 => '2.3',
             ),
+        ),
+        'twilio/sdk' => array(
+            'pretty_version' => '7.7.1',
+            'version' => '7.7.1.0',
+            'reference' => '4390f89081a1e0bf680d55f2f916f2a89dc6ae4e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../twilio/sdk',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'vlucas/phpdotenv' => array(
             'pretty_version' => 'v5.5.0',

@@ -62,17 +62,6 @@ Router::post('/TablaProveedor',[ProveedorController::class, 'TablaProveedor']);
 
 Router::post('/registrarMascota', [MascotasController::class, 'registrarMascota']);
 
-// verificacion de correo 
-Router::post('/verificarCorreoR', [RegistroController::class, 'verificarCorreo']);
-
-// Ruta de registro de clientes [Pantalla Registro]
-Router::post('/registro', [RegistroController::class, 'registrar']);
-
-// Router::post('/registro', [EmpleadosController::class, 'registrar']);
-
-// Consulta para mostrar todos los registros
-Router::get('/mostrarR', [RegistroController::class, 'mostrarR']);
-
 // Verificiacion de usuario en login BD -> login
 Router::post('/verificacion', [LoginController::class, 'verificar']);
 

@@ -19,6 +19,10 @@ class ComposerStaticInitfb9c27f0811c6f21e183fe25a1c15d8b
         array (
             'proyecto\\' => 9,
         ),
+        'T' => 
+        array (
+            'Twilio\\' => 7,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -54,6 +58,10 @@ class ComposerStaticInitfb9c27f0811c6f21e183fe25a1c15d8b
         'proyecto\\' => 
         array (
             0 => __DIR__ . '/../..' . '/srcphp',
+        ),
+        'Twilio\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twilio/sdk/src/Twilio',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (

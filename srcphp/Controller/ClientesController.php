@@ -4,7 +4,7 @@ namespace proyecto\Controller;
 use proyecto\Models\Usuarios;
 use proyecto\Response\Failure;
 use proyecto\Response\Success;
-use proyecto\models\Table;
+use proyecto\Models\Table;
 use proyecto\Conexion;
 use proyecto\Models\Models;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

@@ -5,6 +5,7 @@ namespace proyecto\Models;
 use PDO;
 use proyecto\Conexion;
 use Dotenv\Dotenv;
+use Twilio\Rest\Client;
 
 class Table
 {
@@ -20,7 +21,7 @@ class Table
     static function insertFromJson($query, $json)
     {
         try {
-            $cc = new Conexion("consultasveterinaria", "localhost", "root", "");
+            $cc = new  Conexion("consultasveterinaria", "localhost", "root", "");
             self::$pdo = $cc->getPDO();
     
             $stmt = self::$pdo->prepare($query);
@@ -46,7 +47,7 @@ class Table
 
     static function queryParams($query, $params = [])
     {
-        $cc = new Conexion("consultasveterinaria", "localhost", "root", "");
+        $cc = new  Conexion("consultasveterinaria", "localhost", "root", "");
         self::$pdo = $cc->getPDO();
 
         $stmt = self::$pdo->prepare($query);

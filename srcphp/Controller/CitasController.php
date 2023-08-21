@@ -318,7 +318,6 @@ class citasController
     
         $params = [
             'userregis'       => $dataObject->userregis,
-            'correo'          => $dataObject->correo,
             'p_nombre'        => $dataObject->nombre,
             'p_apellido'      => $dataObject->apellido,
             'p_telefono1'     => $dataObject->telefono1,
@@ -333,7 +332,7 @@ class citasController
         ];
     
         try {
-            $resultados = Table::queryParams("CALL CrearRegistroVeterinario(:userregis, :correo, :p_nombre, :p_apellido, :p_telefono1, :p_telefono2, :p_nombre_animal, :p_especie, :p_raza, :p_genero, :p_fecha_cita, :p_estatus, :p_motivo)", $params);
+            $resultados = Table::queryParams("CALL CrearRegistroVeterinario(:userregis, :p_nombre, :p_apellido, :p_telefono1, :p_telefono2, :p_nombre_animal, :p_especie, :p_raza, :p_genero, :p_fecha_cita, :p_estatus, :p_motivo)", $params);
     
             $r = new Success($resultados);
             return $r->Send();
