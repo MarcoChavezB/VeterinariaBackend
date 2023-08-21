@@ -63,7 +63,7 @@ Router::post('/ReporteConsultasCliente',[ReportesController::class, 'ReporteCons
 Router::post('/ReporteGralCitasRechazadas',[ReportesController::class, 'ReporteGralCitasRechazadas']);
 Router::post('/ReporteCitasRechazadasCliente',[ReportesController::class, 'ReporteCitasRechazadasCliente']);
 Router::post('/ReporteCitasRechazadasFecha',[ReportesController::class, 'ReporteCitasRechazadasFecha']);
-
+Router::post('/CorreoUsuario',[CitasController::class, 'CorreoUsuario']);
 Router::post('/ReporteGeneralOrdenesCompra',[ReportesController::class, 'ReporteGeneralOrdenesCompra']);
 Router::post('/ReporteGeneralOrdenesCompraPagadas',[ReportesController::class, 'ReporteGeneralOrdenesCompraPagadas']);
 
