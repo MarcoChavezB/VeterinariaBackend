@@ -338,12 +338,12 @@ class citasController
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = $_ENV['SMTPMail'];
-            $mail->Password = $_ENV['MailPassword'];
+            $mail->Username = 'vetcachorrosdoc@gmail.com';
+            $mail->Password = 'wqixaoqjmmxaklqo';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom($_ENV['SMTPMail']);
+            $mail->setFrom('vetcachorrosdoc@gmail.com');
             $mail->addAddress ($dataObject->correo_u);
 
             $mail->isHTML(true);
