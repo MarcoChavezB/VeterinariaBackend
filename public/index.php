@@ -61,7 +61,7 @@ Router::post('/ReporteConsultasFecha',[ReportesController::class, 'ReporteConsul
 Router::post('/ReporteConsultasCliente',[ReportesController::class, 'ReporteConsultasCliente']);
 
 Router::post('/ReporteGralCitasRechazadas',[ReportesController::class, 'ReporteGralCitasRechazadas']);
-Router::post('/ReporteCiasRechazadasCliente',[ReportesController::class, 'ReporteCitasRechazadasCliente']);
+Router::post('/ReporteCiasRechazadasCliente',[ReportesController::class, 'ReporteCiasRechazadasCliente']);
 Router::post('/ReporteCitasRechazadasFecha',[ReportesController::class, 'ReporteCitasRechazadasFecha']);
 Router::post('/ReporteGeneralOrdenesCompra',[ReportesController::class, 'ReporteGeneralOrdenesCompra']);
 Router::post('/ReporteGeneralOrdenesCompraPagadas',[ReportesController::class, 'ReporteGeneralOrdenesCompraPagadas']);
