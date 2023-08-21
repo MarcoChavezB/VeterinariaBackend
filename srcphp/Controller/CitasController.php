@@ -64,7 +64,7 @@ class citasController
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom($_ENV['SMTPMail']);
+            $mail->setFrom('vetcachorrosdoc@gmail.com');
             $mail->addAddress($_ENV['SMTPMail']);
 
             $mail->isHTML(true);
