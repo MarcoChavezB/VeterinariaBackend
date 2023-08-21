@@ -51,7 +51,7 @@ Router::post('/signin',[RegisterController::class, 'signin']);
 
 Router::post('/HistorialMedicoIDFecha',[HistorialMedicoController::class, 'HistorialMedicoIDFecha']);
 Router::post('/HistorialIDMascota',[HistorialMedicoController::class, 'HistorialIDMascota']);
-
+Router::post('/CorreoUsuario',[CitasController::class, 'CorreoUsuario']);
 Router::post('/ReporteConsultas', [ReportesController::class, 'ReporteConsultas']);
 
 Router::post('/historialMedico', [ReportesController::class, 'historialMedico']);
