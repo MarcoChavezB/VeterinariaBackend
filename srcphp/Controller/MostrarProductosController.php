@@ -77,6 +77,7 @@ class MostrarProductosController
         nom_producto, 
         descripcion,
         tipo_producto,
+        imagen,
         MAX(existencias) as existencias,
         MAX(precio_venta) as precio_venta, 
         (MAX(precio_venta) * 0.16) as iva,
