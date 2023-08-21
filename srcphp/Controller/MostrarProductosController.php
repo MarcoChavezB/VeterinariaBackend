@@ -8,7 +8,7 @@ use proyecto\Models\Table;
 class MostrarProductosController
 {
 
-    /// MUESTRA DE PRODUCTOS 
+    /// MUESTRA DE PRODUCTOS
 
     function mostrarP()
     {

@@ -7,6 +7,7 @@ use PDO;
 class Citas extends Models
 {
     public $id;
+    public $user_regis = "";
     public $fecha_registro = "";
     public $fecha_cita = "";
     public $id_mascota = "";
@@ -16,6 +17,7 @@ class Citas extends Models
     protected $filleable = [
 
         "id",
+        "user_regis",
         "fecha_registro",
         "fecha_cita",
         "id_mascota",

@@ -52,6 +52,16 @@ class VentasController
         echo $json_response;
     }
 
+    function revertir()
+    {
+        $t = Table::query("CALL revertir_ultima_venta()");
+        $r = new Success($t);
+        $json_response = json_encode($r);
+
+        header('Content-Type: application/json');
+        echo $json_response;
+    }
+
 
     function venta() {
         try {
@@ -87,6 +97,7 @@ class VentasController
         return $r;
     }
 
+    
 
 
     function tiket()
@@ -96,7 +107,7 @@ class VentasController
         $json_response = json_encode($r);
 
         header('Content-Type: application/json');
-        echo $json_response;
+        echo json_encode($json_response);
     }
     
 }

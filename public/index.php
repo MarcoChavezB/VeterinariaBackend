@@ -1,7 +1,7 @@
 <?php
 namespace proyecto;
 require("../vendor/autoload.php");
-
+use PDO;
 use proyecto\Controller\LoginController;
 use proyecto\Controller\RegistroController;
 use proyecto\Controller\MostrarProductosController;
@@ -11,7 +11,7 @@ use proyecto\Response\Success;
 use proyecto\Controller\EmpleadosController;
 use proyecto\Controller\VentasController;
 use proyecto\Controller\Ordenes_comprasController;
-use proyecto\Controller\citasController;
+use proyecto\Controller\CitasController;
 use proyecto\Controller\ProductoController;
 use proyecto\Controller\GenerarConsultasController;
 use proyecto\Controller\MascotasController;
@@ -19,15 +19,27 @@ use proyecto\Controller\ReportesController;
 use proyecto\Controller\HistorialMedicoController;
 use proyecto\Controller\TiposServiciosController;
 use proyecto\Controller\RegisterController;
+use proyecto\Models\TiposServicio;
+use proyecto\Models\Models;
+
 
 Router::headers();
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 // funcion de prueba
-Router::get("/pru", function(){
-    $r = new Success("funcionando");
-    $r->Send();
+
+
+Router::get('/prueba',function(){
+    try{
+        $db =(array) TiposServicio::all()[0];
+
+        $response = new Success($db);
+        $response->send();
+        echo "Conexion exitosa";
+    }catch(\Exception $e){
+        echo $e->getMessage();
+    }
 });
 
 
@@ -61,6 +73,17 @@ Router::post('/TablaProveedor',[ProveedorController::class, 'TablaProveedor']);
 
 
 Router::post('/registrarMascota', [MascotasController::class, 'registrarMascota']);
+
+// verificacion de correo
+Router::post('/verificarCorreoR', [RegistroController::class, 'verificarCorreo']);
+
+// Ruta de registro de clientes [Pantalla Registro]
+Router::post('/registro', [RegistroController::class, 'registrar']);
+
+// Router::post('/registro', [EmpleadosController::class, 'registrar']);
+
+// Consulta para mostrar todos los registros
+Router::get('/mostrarR', [RegistroController::class, 'mostrarR']); // funciona
 
 // Verificiacion de usuario en login BD -> login
 Router::post('/verificacion', [LoginController::class, 'verificar']);
@@ -120,94 +143,49 @@ Router::get('/obtenerTodosTiposServiciosView', [TiposServiciosController::class,
 
 // funcion de prueba
 Router::get("/pru", function(){
-    $r = new Success("funcionando");
-    $r->Send();
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=consultasveterinaria', "anthony", "2023-qwerty");
+        echo "Conexión exitosa!";
+    } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
 });
-// Mandar Productos Publicos
 Router::get('/productosPublicos', [MostrarProductosController::class, 'mostrarProductsPublic']);
-
-// Mandar Rango de precios de productos Publicos
 Router::post('/preciosPublicos', [MostrarProductosController::class,'rangoPreciosPublics']);
-
-// datos para la grafica
 Router::post('/data', [VentasController::class, 'fecha']);
-
-// busqueda de productos
 Router::post('/buscar', [MostrarProductosController::class, 'buscarProducto']);
 Router::post('/buscarInterno', [MostrarProductosController::class, 'buscarProductoInterno']);
-
 Router::post('/buscarlimit', [MostrarProductosController::class, 'buscarProductolimite']);
-
 Router::post('/buscarID', [MostrarProductosController::class, 'buscarProductoID']);
-
-// Realizar compra 
 Router::post('/orden/compra', [Ordenes_comprasController::class, 'CrearOrdenCompra']);
-
-// obtener todos las ordenes de compras pendientes
 Router::get('/orden/pendientes', [Ordenes_comprasController::class, 'TablaOrdenesCompras']);
-
-// buscar por rango/o No, de fecha de de compra o pago 
 Router::post('/orden/porfecha', [Ordenes_comprasController::class, 'buscarOrdenesPorFecha']);
-
 Router::post('/orden/porestado', [Ordenes_comprasController::class, 'buscarOrdenesPorEstado']);
-
-// Mostrar ventas recientes 
 Router::get('/ventasRecientes', [VentasController::class, 'mostrarVentasRecientes']);
-
-// generar cita local, inserccion de cliente, animal y cita
-Router::post('/citalocal', [citasController::class, 'CrearRegistroVeterinario']);
-
-
-// Citas pendientes
-Router::get('/citasPendientes', [citasController::class, 'mostrarCitasPendientes']);
-
-Router::post('/agendarcita', [citasController::class, 'agendarcita']);
-Router::post('/MascotasUsuario', [citasController::class, 'MascotasUsuario']);
-Router::post('/ServiciosClinicos', [citasController::class, 'ServiciosClinicos']);
-Router::post('/ServiciosEsteticos', [citasController::class, 'ServiciosEsteticos']);
-Router::post('/CitasPendientesCliente', [citasController::class, 'CitasPendientesCliente']);
-Router::post('/ValidacionFechas', [citasController::class, 'ValidacionFechas']);
-Router::post('/NotiCorreo', [citasController::class, 'NotiCorreo']);
-
-
-
-
+Router::post('/citalocal', [CitasController::class, 'CrearRegistroVeterinario']);
+Router::get('/citasPendientes', [CitasController::class, 'mostrarCitasPendientes']);
+Router::post('/agendarcita', [CitasController::class, 'agendarcita']);
+Router::post('/MascotasUsuario', [CitasController::class, 'MascotasUsuario']);
+Router::post('/ServiciosClinicos', [CitasController::class, 'ServiciosClinicos']);
+Router::post('/ServiciosEsteticos', [CitasController::class, 'ServiciosEsteticos']);
+Router::post('/CitasPendientesCliente', [CitasController::class, 'CitasPendientesCliente']);
+Router::post('/ValidacionFechas', [CitasController::class, 'ValidacionFechas']);
+Router::post('/NotiCorreo', [CitasController::class, 'NotiCorreo']);
 Router::post('/agregarservicioproduct', [TiposServiciosController::class, 'CrearTipoServicioYProductos']);
-
 Router::get('/serviciospublicos', [TiposServiciosController::class, 'serviciospublicos']);
 Router::get('/serviciosprivados', [TiposServiciosController::class, 'serviciosprivados']);
 Router::get('/serviciospublicosesteticos', [TiposServiciosController::class, 'serviciospublicosesteticos']);
 Router::get('/serviciospublicosclinicos', [TiposServiciosController::class, 'serviciospublicosclinicos']);
 Router::get('/serviciosprivadossesteticos', [TiposServiciosController::class, 'serviciosprivadossesteticos']);
 Router::get('/serviciosprivadosclinicos', [TiposServiciosController::class, 'serviciosprivadosclinicos']);
-
-
-
-
-// AGREGAR PRODUCTO 
 Router::post('/agregarProducto', [ProductoController::class, 'AgregarProductoPublico']);
-
-// ALTER PRODUCTO
 Router::post('/alterProduct', [ProductoController::class, 'modificarProducto']);
-
-// ALTER DATA PRODUCT
 Router::post('/dataProd', [ProductoController::class, 'modificarDataProducto']);
-
-// AGREGAR PRODUCTO INTERNO
 Router::post('/dataProdInterno', [ProductoController::class, 'AgregarProductoInterno']);
-
-// MODIFICAR PRODUCTO INTERNO
 Router::post('/alterProdInterno', [ProductoController::class, 'modificarProductoInterno']);
-
-// MODIFICAR PRODUCTO EXISTENTE
 Router::post('/alterProdInternoExistente', [ProductoController::class, 'modificarDataProductoInterno']);
-
-// mostrar proveedore 
 Router::get('/proveedores', [ProveedorController::class, 'proveedores']);
-
-// mostrar categorias 
 Router::get('/categorias', [ProductoController::class, 'mostrarCategorias']);
-
 Router::post('/GenerarConsultas',[GenerarConsultasController::class, 'GenerarConsultas']);
 Router::post('/GenerarConsultasCliente',[GenerarConsultasController::class, 'GenerarConsultasCliente']);
 Router::post('/GenerarConsultasFecha',[GenerarConsultasController::class, 'GenerarConsultasFecha']);
@@ -215,26 +193,17 @@ Router::post('/BuscarMedicamentos',[GenerarConsultasController::class, 'BuscarMe
 Router::post('/RegistroConsulta',[GenerarConsultasController::class, 'RegistroConsulta']);
 Router::post('/TServicios',[GenerarConsultasController::class, 'TServicios']);
 Router::post('/CostosAfter',[GenerarConsultasController::class, 'CostosAfter']);
-
-
 Router::get('/total_citas', [MostrarProductosController::class, 'cantidad_citas']);
 Router::get('/total_ventas', [MostrarProductosController::class, 'cantidad_ventas']);
 Router::get('/monto_total', [MostrarProductosController::class, 'montoTotal']);
-
 Router::post('/productoxcadena', [MostrarProductosController::class, 'productoporcadena']);
-
 Router::post('/productopublicoporcadena', [MostrarProductosController::class, 'productopublicoporcadena']);
-
-
-Router::get('/citas_total', [citasController::class, 'citasTot']);
-Router::get('/citas_aceptadas', [citasController::class, 'citasAceptadas']);
-
-Router::post('/citas_id', [citasController::class, 'cita_id']);
-Router::post('/citasResponse', [citasController::class, 'rechazar_aceptar_cita']);
-
-Router::post('/citasAceptadasResponse', [citasController::class, 'rechazar_completar_cita']);
+Router::get('/citas_total', [CitasController::class, 'citasTot']);
+Router::get('/citas_aceptadas', [CitasController::class, 'citasAceptadas']);
+Router::post('/citas_id', [CitasController::class, 'cita_id']);
+Router::post('/citasResponse', [CitasController::class, 'rechazar_aceptar_cita']);
+Router::post('/citasAceptadasResponse', [CitasController::class, 'rechazar_completar_cita']);
 Router::get('/verificacion', [LoginController::class, 'verificacion']);
-
 Router::post('/venta', [VentasController::class, 'venta']);
-
 Router::get('/GenerarTiket', [VentasController::class, 'tiket']);
+

@@ -49,9 +49,9 @@ class ProductoController
             $existencias = $dataObject->cantidad_pructos;
             $precio_venta = $dataObject->precio_venta;
             $precio_compra = $dataObject->precio_compra;
-            $categoria = $dataObject->categoria_producto;
-    
-            // Llamar al método con los parámetros adecuados
+            $categoria = $dataObject->categoria_producto; 
+            
+
             $products = $this->AgregarProductoPublicoQuery($nom_producto, $descripcion, $tipo_producto, $precio_venta, $categoria, $existencias, $precio_compra);
     
             $response = ['data' => $products];
@@ -76,7 +76,7 @@ class ProductoController
             'precio_venta' => $precio_venta,
             'categoria' => $categoria,
             'existencias' => $existencias,
-            'precio_compra' => $precio_compra,
+            'precio_compra' => $precio_compra
         ]);
     
         return $t;
@@ -144,7 +144,11 @@ class ProductoController
             header('Content-Type: application/json');
             echo json_encode($errorResponse);
             http_response_code(500);
+        
+            // Imprime el error en el servidor para depuración
+            error_log("Error en el servidor: " . $e->getMessage());
         }
+        
     }
 
     function modificarDataProductoQuerry($nom_producto, $descripcion, $categoria, $precio_venta, $precio_compra) {
@@ -308,6 +312,54 @@ class ProductoController
         } catch (\Exception $e) {
             $r = new Failure(401, $e->getMessage());
             return $r->Send();
+        }
+    }
+
+    public function verificar_producto()
+    {
+        try {
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $nombre = $dataObject->nombre_producto;
+            
+            $resultado = $this->verificar_existencia($nombre);
+            
+
+            if ($resultado) {
+                
+                $response = array(
+                    "message" => "No se encontro un producto",
+                    "data" => $resultado 
+                );
+                $r = new Success($response);
+                return $r->send();
+            
+            } else {
+
+                $response = array(
+                    "message" => "El producto ya existe",
+                    "data" => $resultado 
+                );
+                $r = new Success($response);
+                return $r->send();
+            }
+
+        } catch (\Exception $e) {
+            
+            $r = new Failure(500, "Error en el servidor: " . $e->getMessage());
+            return $r->Send();
+        }
+    }
+    
+    function verificar_existencia($nombre)
+    {
+        $resultados = Table::queryParams("SELECT nom_producto FROM productos WHERE nom_producto = :nombre", ['nombre' => $nombre]);
+        
+        if (count($resultados) > 0) {
+            return false;    
+        } else{
+            return true;
         }
     }
 }

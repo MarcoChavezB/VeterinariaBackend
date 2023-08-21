@@ -3,20 +3,17 @@
 namespace proyecto\Controller;
 
 use proyecto\Models\Models;
-use proyecto\models\Table;
+use proyecto\Models\Table;
 use proyecto\Response\Success;
 use proyecto\Models\Citas;
 use proyecto\Models\Animales;
 use proyecto\Models\Clientes;
 use proyecto\Response\Failure;
 
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
 
 class citasController
 {
@@ -48,6 +45,7 @@ class citasController
             $dataObject = json_decode($JSONData);
 
             $cita = new Citas();
+            $user_regis = $dataObject->user_regis;
             $cita->fecha_registro = date('Y-m-d H:i:s');
             $cita->fecha_cita = $dataObject->fechaCita;
             $cita->id_mascota = $dataObject->id_mascota;
@@ -234,6 +232,40 @@ class citasController
         return $r;
 
     }
+
+
+    
+    function correo_cita (){
+        try {
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $cita_id = $dataObject->cita_id;            
+
+            $cita = $this->correo_cita_query($cita_id);
+            $response = ['data' => $cita];
+
+            header('Content-Type: application/json');
+            echo json_encode(['message' => 'Procedimiento ejecutado correctamente', 'data' => $response]);
+            
+        } catch (\Exception $e) {
+            $errorResponse = ['message' => "Error en el servidor: " . $e->getMessage()];
+            header('Content-Type: application/json');
+            echo json_encode($errorResponse);
+            http_response_code(500);
+        }
+    }
+
+    function correo_cita_query ($cita_id) {
+        $r = table::queryParams("Call obtener_correo_por_id(:cita_id)",
+    [
+        'cita_id' => $cita_id
+    ]);
+        return $r;
+    }
+
+
+
     function rechazar_aceptar_cita (){
         try {
             $JSONData = file_get_contents("php://input");
@@ -248,11 +280,6 @@ class citasController
 
             header('Content-Type: application/json');
             echo json_encode(['message' => 'Procedimiento ejecutado correctamente', 'data' => $response]);
-
-
-
-
-
 
         } catch (\Exception $e) {
             $errorResponse = ['message' => "Error en el servidor: " . $e->getMessage()];
@@ -273,7 +300,6 @@ class citasController
         );
         echo 'success', $r;
         return $r;
-
     }
 
 

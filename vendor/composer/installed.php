@@ -3,7 +3,11 @@
         'name' => 'proyecto/oop',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+<<<<<<< HEAD
         'reference' => '8dcbba4845f00bcf96d6347687e69ecd0087ee61',
+=======
+        'reference' => 'e936933668116e7a8fa7c3af56ae3e3295f399f0',
+>>>>>>> 5902ad8db619e5bd6f3fd6da1353f9fc86706426
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -29,9 +33,9 @@
             'dev_requirement' => false,
         ),
         'nesbot/carbon' => array(
-            'pretty_version' => '2.68.1',
-            'version' => '2.68.1.0',
-            'reference' => '4f991ed2a403c85efbc4f23eb4030063fdbe01da',
+            'pretty_version' => '2.69.0',
+            'version' => '2.69.0.0',
+            'reference' => '4308217830e4ca445583a37d1bf4aff4153fa81c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(),
@@ -58,11 +62,36 @@
         'proyecto/oop' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => '8dcbba4845f00bcf96d6347687e69ecd0087ee61',
+=======
+<<<<<<< HEAD
+            'reference' => 'e936933668116e7a8fa7c3af56ae3e3295f399f0',
+=======
+            'reference' => '844b5428e8ae5493163f5a39f816832ba65d6dcd',
+            'reference' => 'ee617b6171ec5e152fe90e4a80f48f7634ced4b3',
+            'reference' => 'fc12405f7bede64c61b4968ec8276e88b2fa908a',
+>>>>>>> e2656b9527e9515e5f836f5a5bd27fd7d5e10dab
+>>>>>>> 5902ad8db619e5bd6f3fd6da1353f9fc86706426
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'psr/clock' => array(
+            'pretty_version' => '1.0.0',
+            'version' => '1.0.0.0',
+            'reference' => 'e41a24703d4560fd0acb709162f73b8adfc3aa0d',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/clock',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'psr/clock-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
+            ),
         ),
         'symfony/deprecation-contracts' => array(
             'pretty_version' => 'v2.5.2',

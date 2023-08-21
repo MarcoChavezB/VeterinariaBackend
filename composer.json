@@ -11,10 +11,9 @@
     ],
     "require": {
         "vlucas/phpdotenv": "^5.5",
-        "nesbot/carbon": "^2.68",
-        "firebase/php-jwt": "^6.8",
+        "nesbot/carbon": "^2.69",
         "phpmailer/phpmailer": "^6.8",
-        "twilio/sdk": "^7.7"
+        "firebase/php-jwt": "^6.8"
     },
     "autoload": {
         "psr-4": {

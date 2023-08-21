@@ -17,7 +17,7 @@
 
         public function __construct()
         {
-            $cc = new  Conexion("consultasveterinaria", "localhost", "root", "");
+            $cc = new  Conexion("consultasveterinaria", "localhost", "anthony", "2023-qwerty");
             self::$pdo = $cc->getPDO();
         }
 
@@ -58,17 +58,20 @@
             $this->create($ob);
         }
         public static function all(){
+
+
             $class = get_called_class();
             $c = new $class();
 
+
             $stmt = self::$pdo->prepare("select * from  $c->table");
 
-            $stmt->execute();
+             $stmt->execute();
 
-            $resultados = $stmt->fetchAll(PDO::FETCH_OBJ);
+             $resultados = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 
-            return  json_encode($resultados);
+            return  $resultados;
         }
         public static function delete($id){
             $class = get_called_class();
