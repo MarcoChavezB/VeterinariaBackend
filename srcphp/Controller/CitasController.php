@@ -45,7 +45,7 @@ class citasController
             $dataObject = json_decode($JSONData);
 
             $cita = new Citas();
-            $user_regis = $dataObject->user_regis;
+            $cita->user_regis = $dataObject->user_regis;
             $cita->fecha_registro = date('Y-m-d H:i:s');
             $cita->fecha_cita = $dataObject->fechaCita;
             $cita->id_mascota = $dataObject->id_mascota;
