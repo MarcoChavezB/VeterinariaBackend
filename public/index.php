@@ -22,6 +22,8 @@ use proyecto\Controller\RegisterController;
 use proyecto\Models\TiposServicio;
 use proyecto\Models\Models;
 
+$dotenv = Dotenv::createImmutable(_DIR_);
+$dotenv->load();
 
 Router::headers();
 
@@ -42,6 +44,9 @@ Router::get('/prueba',function(){
     }
 });
 
+
+Router::post('/revisar_producto', [ProductoController::class, 'verificar_producto']);
+Router::post('/CancelarCompra', [VentasController::class, 'revertir']);
 
 Router::post('/auth', [RegisterController::class, 'auth']);
 Router::post('/signin',[RegisterController::class, 'signin']);

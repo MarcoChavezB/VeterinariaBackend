@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'proyecto\\' => array($baseDir . '/srcphp'),
-    'Twilio\\' => array($vendorDir . '/twilio/sdk/src/Twilio'),
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),

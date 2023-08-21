@@ -126,6 +126,24 @@ class GenerarConsultasController{
         }
     }
 
+    function CalcularCostoDetallado (){
+        try {
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $ids = implode(', ', $dataObject->CostosServicios);
+
+            $resultados = Table::query("CALL CalcularCostoDetallado ('$ids') ");
+
+            $r = new Success($resultados);
+            return $r->Send();
+
+        } catch (\Exception $e) {
+            $r = new Failure(401, $e->getMessage());
+            return $r->Send();
+        }
+    }
+
 }
 
   

@@ -171,14 +171,14 @@ class ReportesController {
         }
     }
 
-    function ReporteCitasRechazadasCliente () {
+    function ReporteCiasRechazadasCliente () {
 
         try{
 
             $JSONData = file_get_contents("php://input");
             $dataObject = json_decode($JSONData);
             
-            $resultados = Table::query("CALL ReporteCitasRechazadasCliente ('{$dataObject->Nombre}','{$dataObject->Apellido}') ");
+            $resultados = Table::query("CALL ReporteCiasRechazadasCliente ('{$dataObject->Nombre}','{$dataObject->Apellido}') ");
 
             $r = new Success($resultados);
             return $r->Send();

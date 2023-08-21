@@ -59,20 +59,20 @@ class citasController
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'vetcachorrosdoc@gmail.com';
-            $mail->Password = 'wqixaoqjmmxaklqo';
+            $mail->Username = $_ENV['SMTPMail'];
+            $mail->Password = $_ENV['MailPassword'];
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
-            //Recipients
-            $mail->setFrom('vetcachorrosdoc@gmail.com');
-            $mail->addAddress('vetcachorrosdoc@gmail.com');
 
-            //Content
+            $mail->setFrom($_ENV['SMTPMail']);
+            $mail->addAddress($_ENV['SMTPMail']);
+
             $mail->isHTML(true);
-            $mail->Subject = 'Se ha generado una nueva cita!';
-            $mail->Body = 'Se ha generado una nueva cita, no dudes en validar la cita lo mas pronto posible.';
+            $mail->Subject = 'Nueva cita programada!';
+            $mail->Body = 'Se ha generado una nueva cita. Le agradecemos su prontitud en validarla a la brevedad posible. ✅';
 
             $mail->send();
+
 
 
 
@@ -126,6 +126,21 @@ class citasController
             $dataObject = json_decode($JSONData);
 
             $resultados = Table::query(" CALL CitasPendientesCliente ('{$dataObject->id_cliente}') ");
+
+            $r = new Success($resultados);
+            return $r->Send();
+        } catch (\Exception $e) {
+            $r = new Failure(401, $e->getMessage());
+            return $r->Send();
+        }
+    }
+
+    function CitasRechazadasCliente() {
+        try {
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $resultados = Table::query(" CALL CitasRechazadasCliente ('{$dataObject->id_cliente}') ");
 
             $r = new Success($resultados);
             return $r->Send();
@@ -317,18 +332,23 @@ class citasController
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'vetcachorrosdoc@gmail.com';
-            $mail->Password = 'wqixaoqjmmxaklqo';
+            $mail->Username = $_ENV['SMTPMail'];
+            $mail->Password = $_ENV['MailPassword'];
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
-            //Recipients
-            $mail->setFrom('vetcachorrosdoc@gmail.com');
-            $mail->addAddress($dataObject->correo_u);
 
-            //Content
+            $mail->setFrom($_ENV['SMTPMail']);
+            $mail->addAddress ($dataObject->correo_u);
+
             $mail->isHTML(true);
-            $mail->Subject = 'Estatus de tu cita!';
-            $mail->Body = 'Se ha validado tu cita, asegurate de entrar a nuestra aplicaicon web para verificar su estado, para dudas o sugerencias puedes contactarnos al +528711034602';
+            $mail->Subject = 'Actualizacion sobre el Estado de tu Cita.';
+            $mail->Body = 'Estimado/a cliente, <br><br><br><br> Es un placer informarte que tu cita ha sido exitosamente validada. Te invitamos cordialmente a acceder a nuestra plataforma web para verificar el estado actualizado de tu cita. Estamos comprometidos en brindarte un servicio de calidad y transparencia en cada paso del proceso. <br><br><br><br>
+
+Si en algún momento surgieran dudas o si deseas compartir sugerencias con nosotros, no dudes en contactarnos. Estamos a tu disposición para proporcionarte la atención personalizada que mereces. Puedes comunicarte con nuestro equipo a través del número de teléfono +52-8711034602. <br><br><br><br>
+
+Agradecemos tu confianza en nuestros servicios y esperamos brindarte la mejor experiencia posible. <br><br><br><br>
+
+Atentamente, Veterinaria Cachorros. 🐶';
 
             $mail->send();
         }catch (Exception $e) {
@@ -365,6 +385,21 @@ class citasController
     
         } catch (PDOException $e) {
             $r = new Error($e->getMessage());
+            return $r->Send();
+        }
+    }
+
+    function CorreoUsuario() {
+        try {
+            $JSONData = file_get_contents("php://input");
+            $dataObject = json_decode($JSONData);
+
+            $resultados = Table::query("CALL CorreoUsuario ('{$dataObject->cita_id}') ");
+
+            $r = new Success($resultados);
+            return $r->Send();
+        } catch (\Exception $e) {
+            $r = new Failure(401, $e->getMessage());
             return $r->Send();
         }
     }
